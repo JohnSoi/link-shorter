@@ -45,6 +45,7 @@ class BaseAppModel(Base):
         id (int): идентификатор сущности.
         created_at (datetime): дата создания сущности.
     """
+
     __abstract__: bool = True
 
     id: Mapped[int] = mapped_column(primary_key=True)

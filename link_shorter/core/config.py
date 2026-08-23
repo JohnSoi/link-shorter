@@ -16,6 +16,7 @@ class AppConfig(BaseSettings):
         DATABASE_USER (str): пользователь базы данных
         DATABASE_PASSWORD (str): пароль базы данных
     """
+
     model_config = SettingsConfigDict(env_file=".env", extra="ignore", env_file_encoding="utf8")
 
     DATABASE_HOST: str = "localhost"
