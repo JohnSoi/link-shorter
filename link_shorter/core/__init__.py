@@ -3,4 +3,5 @@
 __author__ = "Старков Е.П."
 
 from .config import app_config
-from .database import BaseAppModel, async_session_maker
+from .database import BaseAppModel, get_async_session
+from .exceptions import BaseAppException, BaseAppNotFoundError

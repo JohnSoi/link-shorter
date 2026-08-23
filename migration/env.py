@@ -1,5 +1,8 @@
 import asyncio
+import importlib
 from logging.config import fileConfig
+from os import listdir
+from pathlib import Path
 
 from sqlalchemy import pool
 from sqlalchemy.engine import Connection
@@ -8,6 +11,22 @@ from sqlalchemy.ext.asyncio import async_engine_from_config
 from alembic import context
 
 from link_shorter.core import app_config, BaseAppModel
+
+PACKAGE_NAME: str = "link_shorter"
+PACKAGE_PATH: str = f"./{PACKAGE_NAME}"
+MODEL_MODULE_NAME: str = "models"
+MODEL_FILE_NAME: str = f"{MODEL_MODULE_NAME}.py"
+
+for item in listdir(PACKAGE_PATH):
+    path: Path = Path(f"{PACKAGE_PATH}/{item}")
+
+    if not path.is_dir():
+        continue
+
+    if MODEL_FILE_NAME not in listdir(path):
+        continue
+
+    importlib.import_module(f"{PACKAGE_NAME}.{item}.{MODEL_MODULE_NAME}")
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

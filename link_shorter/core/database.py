@@ -28,6 +28,17 @@ async def get_async_session() -> AsyncGenerator[AsyncSession, Any]:
 
     Returns:
         AsyncGenerator[AsyncSession, Any]: сессия для работы с базой данных.
+
+    Examples:
+            >>> from fastapi import APIRouter, Depends
+            >>> from sqlalchemy.ext.asyncio import AsyncSession
+            >>> from link_shorter.core import get_async_session
+            >>>
+            >>> router: APIRouter = APIRouter("/")
+            >>>
+            >>> @router.get("/")
+            >>> async def example(async_db_session: AsyncSession = Depends(get_async_session)) -> str:
+            ...     return "Hello World!"
     """
     async with async_session_maker() as session:
         yield session
@@ -44,6 +55,17 @@ class BaseAppModel(Base):
     Attributes:
         id (int): идентификатор сущности.
         created_at (datetime): дата создания сущности.
+
+    Examples:
+        >>> from sqlalchemy import String
+        >>> from sqlalchemy.orm import Mapped, mapped_column
+        >>> from link_shorter.core import BaseAppModel
+        >>>
+        >>>
+        >>> # Таблица users с полями name, id, created_at
+        >>> class UserModel(BaseAppModel):
+        ...    __tablename__: str = "users"
+        ...    name: Mapped[str] = mapped_column(String(255))
     """
 
     __abstract__: bool = True

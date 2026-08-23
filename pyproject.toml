@@ -17,7 +17,7 @@ dependencies = [
 line-length = 120
 
 [tool.ruff.lint]
-ignore = ["F401"]
+ignore = ["F401", "B008"]
 
 [dependency-groups]
 dev = [

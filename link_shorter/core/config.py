@@ -15,6 +15,8 @@ class AppConfig(BaseSettings):
         DATABASE_NAME (str): имя базы данных
         DATABASE_USER (str): пользователь базы данных
         DATABASE_PASSWORD (str): пароль базы данных
+
+        BASE_URL (str): базовый URL
     """
 
     model_config = SettingsConfigDict(env_file=".env", extra="ignore", env_file_encoding="utf8")
@@ -24,6 +26,8 @@ class AppConfig(BaseSettings):
     DATABASE_NAME: str = "link_shorter_db"
     DATABASE_USER: str
     DATABASE_PASSWORD: str
+
+    BASE_URL: str = "http://localhost:8000"
 
     @property
     def db_url(self) -> str:
