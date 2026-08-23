@@ -18,6 +18,7 @@ jobs:
       - name: Install Ruff
         run: uv tool install ruff
   ruff:
+    needs: install
     runs-on: ubuntu-latest
     steps:
       - name: Ruff check
@@ -26,6 +27,7 @@ jobs:
       - name: Ruff format
         run: uv run ruff format --check link_shorter
   other:
+    needs: install
     runs-on: ubuntu-latest
     steps:
       - name: PyLint check
