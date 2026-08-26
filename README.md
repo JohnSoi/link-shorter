@@ -24,7 +24,7 @@ alembic revision --autogenerate -m "<Комментарий>"
 
 * Запуск сервера:
 ```bash
-uv run uvicor main:app --reload 
+uv run uvicorn main:app --reload 
 ```
 
 ## Статус тестов
