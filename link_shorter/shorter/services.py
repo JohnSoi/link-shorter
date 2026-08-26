@@ -7,7 +7,7 @@ import string
 
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from link_shorter.core import app_config
+from link_shorter.core import app_config, EventBus
 
 from .consts import PATH_PREFIX, TOKEN_LENGTH
 from .exceptions import TokenNotFoundError
@@ -90,8 +90,15 @@ class ShortLinkService:
             ... ) -> str:
             ...     return await ShortLinkService(async_db_session).get_url(token)
         """
-        if url := await self._repository.get_url_by_token(token):
-            return url
+        if token_data := await self._repository.get_by_token(token):
+            await EventBus().emit(
+                "short_link_used",
+                {
+                    "link_id": token_data.id,
+                    "db_session": self._async_db_session
+                }
+            )
+            return token_data.original_link
 
         raise TokenNotFoundError()
 

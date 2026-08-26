@@ -41,15 +41,15 @@ class ShortLinkRepository:
 
         return data.token
 
-    async def get_url_by_token(self, token: str) -> str | None:
+    async def get_by_token(self, token: str) -> ShortLinkModel | None:
         """
-        Получение ссылки по короткому токену.
+        Получение данных по короткому токену.
 
         Args:
             token (str): токен короткой ссылки.
 
         Returns:
-            str | None: url, если он есть в БД.
+            ShortLinkModel | None: url, если он есть в БД.
         """
         query: Select = select(self._MODEL).filter_by(token=token)
         result: Result[ShortLinkModel] = await self._async_db_session.execute(query)
@@ -58,7 +58,7 @@ class ShortLinkRepository:
         if not data:
             return None
 
-        return data.original_link
+        return data
 
     async def create(self, data: dict) -> ShortLinkModel:
         """

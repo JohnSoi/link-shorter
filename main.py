@@ -2,6 +2,8 @@ from fastapi import FastAPI
 
 from link_shorter.shorter import shorter_router
 
+from link_shorter.statistic.event_handlers import *
+
 app: FastAPI = FastAPI(
     version="0.1.0",
     title="LinkShorter",

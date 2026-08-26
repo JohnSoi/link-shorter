@@ -15,7 +15,7 @@ class StatisticRepository:
         self._async_db_session: AsyncSession = async_db_session
 
     async def add_use_statistic(self, short_link_id: int) -> None:
-        new_model: StatisticModel = StatisticModel({"link_id": short_link_id})
+        new_model: StatisticModel = StatisticModel(link_id=short_link_id)
 
         self._async_db_session.add(new_model)
         await self._async_db_session.commit()
