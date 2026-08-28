@@ -17,6 +17,9 @@ class AppConfig(BaseSettings):
         DATABASE_PASSWORD (str): пароль базы данных
 
         BASE_URL (str): базовый URL
+
+        CELERY_BROKER_URL (str): URL брокера
+        CELERY_RESULT_BACKEND (str): URL результата работы Celery
     """
 
     model_config = SettingsConfigDict(env_file=".env", extra="ignore", env_file_encoding="utf8")
@@ -28,6 +31,9 @@ class AppConfig(BaseSettings):
     DATABASE_PASSWORD: str
 
     BASE_URL: str = "http://localhost:8000"
+
+    CELERY_BROKER_URL: str = "redis://localhost:6379/0"
+    CELERY_RESULT_BACKEND: str = "redis://localhost:6379/0"
 
     @property
     def db_url(self) -> str:

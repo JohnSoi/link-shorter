@@ -18,7 +18,7 @@ from .config import app_config
 
 async_engine: AsyncEngine = create_async_engine(app_config.db_url)
 async_session_maker: async_sessionmaker[AsyncSession] = async_sessionmaker[AsyncSession](
-    async_engine, expire_on_commit=False
+    async_engine, expire_on_commit=False, class_=AsyncSession
 )
 
 

@@ -1,17 +1,25 @@
-from sqlalchemy.ext.asyncio import AsyncSession
+"""Обработчики событий и подпичики."""
 
-from .services import StatisticService
+__author__ = "Старков Е.П."
+
 from link_shorter.core import EventBus
 
+from .tasks import update_link_statistic
 
-async def add_link_statistic(event_data: dict) -> None:
-    session_data: AsyncSession | None = event_data.get("db_session")
+
+def add_link_statistic(event_data: dict) -> None:
+    """
+    Обработчик события использования ссылки — запускает Celery задачу.
+
+    Args:
+        event_data (dict): данные события
+    """
     link_id: int | None = event_data.get("link_id")
 
-    if not session_data or not link_id:
+    if not link_id:
         return
 
-    await StatisticService(session_data).add_use_statistic(link_id)
+    update_link_statistic.delay(link_id)
 
 
 EventBus().subscribe("short_link_used", add_link_statistic)

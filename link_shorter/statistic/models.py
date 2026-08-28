@@ -16,6 +16,7 @@ class StatisticModel(BaseAppModel):
     Attributes:
         link_id (int): идентификатор связанной ссылки.
     """
+
     __tablename__: str = "statistics"
 
     link_id: Mapped[int] = mapped_column(ForeignKey("short_links.id"))

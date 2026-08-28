@@ -14,17 +14,22 @@
 
 * Миграция БД:
 ```bash
-alembic upgrade head 
+uv run alembic upgrade head 
 ```
 
 * Создание миграции:
 ```bash
-alembic revision --autogenerate -m "<Комментарий>"
+uv run alembic revision --autogenerate -m "<Комментарий>"
 ```
 
 * Запуск сервера:
 ```bash
 uv run uvicorn main:app --reload 
+```
+
+* Запуск воркера Celery
+```bash
+uv run celery -A link_shorter.celery_app worker --pool=solo --loglevel=info
 ```
 
 ## Статус тестов
