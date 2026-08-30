@@ -78,3 +78,18 @@ class ShortLinkRepository:
         await self._async_db_session.refresh(new_model)
 
         return new_model
+
+    async def get_by_id(self, link_id: int) -> ShortLinkModel | None:
+        """
+        Получение данных ссылки по id.
+
+        Args:
+            link_id (int): id ссылки.
+
+        Returns:
+            ShortLinkModel | None: данные ссылки, если он есть в БД.
+        """
+        query: Select = select(self._MODEL).filter_by(id=link_id)
+        result: Result[ShortLinkModel] = await self._async_db_session.execute(query)
+
+        return result.scalar_one_or_none()

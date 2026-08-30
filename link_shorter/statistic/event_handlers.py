@@ -2,9 +2,8 @@
 
 __author__ = "Старков Е.П."
 
+from link_shorter.celery.tasks import update_link_statistic
 from link_shorter.core import EventBus
-
-from .tasks import update_link_statistic
 
 
 def add_link_statistic(event_data: dict) -> None:

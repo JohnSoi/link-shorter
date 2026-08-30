@@ -29,7 +29,7 @@ uv run uvicorn main:app --reload
 
 * Запуск воркера Celery
 ```bash
-uv run celery -A link_shorter.celery_app worker --pool=solo --loglevel=info
+uv run celery -A link_shorter.celery.main worker --pool=solo --loglevel=info
 ```
 
 ## Статус тестов

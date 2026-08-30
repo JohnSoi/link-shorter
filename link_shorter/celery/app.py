@@ -1,9 +1,8 @@
-# pylint: disable=wrong-import-position, unused-import, wrong-import-order, cyclic-import
-"""Инициализация Celery."""
+"""Модуль экземпляра Celery."""
 
 from celery import Celery
 
-from .core import app_config
+from link_shorter.core import app_config
 
 celery_app: Celery = Celery(
     "statistic",
@@ -18,6 +17,3 @@ celery_app.conf.update(
     timezone="UTC",
     enable_utc=True,
 )
-
-# Импорт задач для их регистрации в Celery
-import link_shorter.statistic.tasks

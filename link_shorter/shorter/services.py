@@ -11,6 +11,7 @@ from link_shorter.core import EventBus, app_config
 
 from .consts import PATH_PREFIX, TOKEN_LENGTH
 from .exceptions import TokenNotFoundError
+from .models import ShortLinkModel
 from .repositories import ShortLinkRepository
 
 
@@ -118,3 +119,29 @@ class ShortLinkService:
         await self._repository.create({"original_link": url, "token": token})
 
         return token
+
+    async def get_by_id(self, link_id: int) -> ShortLinkModel | None:
+        """
+        Получение данных ссылки по ее ИД.
+
+        Args:
+            link_id (int): ИД ссылки.
+
+        Returns:
+            ShortLinkModel | None: данные ссылки или None, если ссылка не найдена.
+
+        Examples:
+            >>> from fastapi import APIRouter, Depends
+            >>> from sqlalchemy.ext.asyncio import AsyncSession
+            >>> from link_shorter.core import get_async_session
+            >>>
+            >>> shorter_router: APIRouter = APIRouter(prefix=f"/{PATH_PREFIX}", tags=["Links"])
+            >>>
+            >>> @shorter_router.get("/{short_token:str}", description="Переход по короткой ссылке")
+            >>> async def get_link_data(
+            ...     search_link_id: int,
+            ...     async_db_session: AsyncSession = Depends(get_async_session)
+            ... ) -> ShortLinkModel | None:
+            ...     return await ShortLinkService(async_db_session).get_by_id(search_link_id)
+        """
+        return await self._repository.get_by_id(link_id)
