@@ -92,7 +92,7 @@ class ShortLinkService:
             ...     return await ShortLinkService(async_db_session).get_url(token)
         """
         if token_data := await self._repository.get_by_token(token):
-            await EventBus().emit("short_link_used", {"link_id": token_data.id, "db_session": self._async_db_session})
+            await EventBus().emit("short_link_used", {"link_id": token_data.id})
             return token_data.original_link
 
         raise TokenNotFoundError()
