@@ -31,4 +31,4 @@ jobs:
         run: uv run pyright link_shorter
 
       - name: Radon check
-        run: uv run radon cc link_shorter
+        run: uv run radon cc -nb link_shorter
