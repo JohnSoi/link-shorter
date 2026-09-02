@@ -1,5 +1,5 @@
 <script setup lang="ts"></script>
 
 <template>
-    <span>123</span>
+    <div class="HomeView__wrapper flex flex-col w-full h-full"></div>
 </template>

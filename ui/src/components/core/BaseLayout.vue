@@ -4,8 +4,8 @@ import BaseMenu from "@/components/core/BaseMenu.vue";
 
 <template>
     <div class="BaseLayout__wrapper w-full h-full overflow-hidden flex flex-col">
-        <BaseMenu/>
-        <main><RouterView /></main>
+        <BaseMenu />
+        <main class="w-full h-full overflow-hidden flex"><RouterView /></main>
     </div>
 </template>
 

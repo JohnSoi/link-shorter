@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { useMenu } from "@/composables/useMenu.ts";
 import { MegaMenu } from "primevue";
+import type { IUseMenu } from "@/types/composables";
 
-const { menuItems } = useMenu();
+const { menuItems }: IUseMenu = useMenu();
 </script>
 
 <template>
