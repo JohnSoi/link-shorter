@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory, type Router, type RouteRecordRaw } from "vue-router";
 import HomeView from "@/views/HomeView.vue";
-import Home from "@primeicons/vue/home";
+import { Home, ChartScatter } from "@primeicons/vue";
 import type { IRouterItem } from "@/types";
+import type { Component } from "vue";
 
 export const routes: IRouterItem[] = [
     {
@@ -11,6 +12,24 @@ export const routes: IRouterItem[] = [
         header: "Главная",
         icon: Home,
         public: true
+    },
+    {
+        path: "/statistics",
+        name: "statistics",
+        component: (): Promise<Component> => import("@/views/StatisticsView.vue"),
+        header: "Статистика",
+        icon: ChartScatter,
+        public: true
+    },
+    {
+        path: "/404",
+        name: "notFound",
+        component: (): Promise<Component> => import("@/views/NotFoundView.vue")
+    },
+    {
+        path: "/link/:pathMatch(.*)*",
+        name: "link",
+        component: (): Promise<Component> => import("@/views/RedirectPage.vue")
     }
 ];
 

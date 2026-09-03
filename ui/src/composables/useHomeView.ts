@@ -4,6 +4,7 @@ import { z } from "zod";
 
 import type {
     IUseHomeView,
+    TCopyLink,
     TFormProcess,
     TFormSubmit,
     THomeFormValues,
@@ -53,13 +54,18 @@ function useHomeView(): IUseHomeView {
 
     const formProcess: TFormProcess = ref(false);
 
+    const copyLink: TCopyLink = async (): Promise<void> => {
+        await navigator.clipboard.writeText(shortLink.value);
+    };
+
     return {
         initialValues,
         resolver,
         shortLink,
         shortLinkPlaceholder,
         formSubmit,
-        formProcess
+        formProcess,
+        copyLink
     };
 }
 

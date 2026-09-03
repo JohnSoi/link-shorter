@@ -6,5 +6,7 @@ export type {
     TShortString,
     TShortPlaceholder,
     TFormProcess,
-    TFormSubmit
+    TFormSubmit,
+    TCopyLink
 } from "./useHomeView.ts";
+export type { TRedirectByToken, IUseRedirectPage } from "./useRedirectPage.ts";

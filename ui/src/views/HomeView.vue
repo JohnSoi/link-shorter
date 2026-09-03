@@ -2,7 +2,8 @@
 import { InputText, Button, Message, Card } from "primevue";
 import { Form } from "@primevue/forms";
 import type { IUseHomeView } from "@/types/composables";
-import { useHomeView } from "@/composables/useHomeView.ts";
+import { useHomeView } from "@/composables/useHomeView";
+import { Clipboard } from "@primeicons/vue";
 
 const {
     initialValues,
@@ -10,7 +11,8 @@ const {
     shortLinkPlaceholder,
     shortLink,
     formSubmit,
-    formProcess
+    formProcess,
+    copyLink
 }: IUseHomeView = useHomeView();
 </script>
 
@@ -55,11 +57,24 @@ const {
                         </div>
                     </template>
                     <template #footer>
-                        <div class="HomeView__block-footer">
+                        <div class="HomeView__block-footer flex justify-center items-center">
                             <span class="text-sm text-surface-500 dark:text-surface-400">
                                 {{ shortLinkPlaceholder }}
                             </span>
-                            <a v-if="shortLink" :href="shortLink" target="_blank">Перейти</a>
+                            <div v-if="shortLink" class="flex justify-center items-center">
+                                <a
+                                    :href="shortLink"
+                                    target="_blank"
+                                    class="ml-2 mr-2 text-blue-300 hover:text-blue-700"
+                                    >перейти</a
+                                >
+                                или
+                                <Clipboard
+                                    class="ml-2 text-blue-500 hover:text-blue-700 cursor-pointer"
+                                    title="Копировать"
+                                    @click="copyLink()"
+                                />
+                            </div>
                         </div>
                     </template>
                 </Card>

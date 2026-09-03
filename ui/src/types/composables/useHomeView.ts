@@ -12,6 +12,7 @@ type TShortString = Ref<string>;
 type TShortPlaceholder = ComputedRef<string>;
 type TFormProcess = Ref<boolean>;
 type TFormSubmit = (form: TFormArgument) => Promise<void>;
+type TCopyLink = () => Promise<void>;
 
 interface IUseHomeView {
     initialValues: THomeFormValues;
@@ -20,6 +21,7 @@ interface IUseHomeView {
     shortLinkPlaceholder: TShortPlaceholder;
     formProcess: TFormProcess;
     formSubmit: TFormSubmit;
+    copyLink: TCopyLink;
 }
 
 export type {
@@ -29,5 +31,6 @@ export type {
     TShortString,
     TShortPlaceholder,
     TFormProcess,
-    TFormSubmit
+    TFormSubmit,
+    TCopyLink
 };

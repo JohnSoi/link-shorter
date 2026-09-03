@@ -9,7 +9,7 @@ const { menuItems }: IUseMenu = useMenu();
 <template>
     <MegaMenu class="BaseMenu__wrapper" :model="menuItems">
         <template #start>
-            <div class="BaseMenu__logo flex items-center">
+            <div class="BaseMenu__logo flex items-center mr-4">
                 <div class="BaseMenu__logo-icon">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"

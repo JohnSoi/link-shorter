@@ -7,8 +7,8 @@ import type { FormFieldState, FormResolverOptions } from "@primevue/forms";
 interface IRouterItem {
     path: string;
     name: string;
-    component: Component;
-    header: string;
+    component: Component | Promise<Component>;
+    header?: string;
     icon?: Component;
     public?: boolean;
 }
