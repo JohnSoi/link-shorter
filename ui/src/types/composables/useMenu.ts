@@ -1,14 +1,17 @@
-import type { Component } from "vue";
+import  { type Component, type Ref } from "vue";
+
+type TCurrentRouterName = Ref<string | null>;
 
 interface IMenuItem {
     label: string;
     route: string;
-    active: boolean;
+    name: string;
     icon?: Component;
 }
 
 interface IUseMenu {
     menuItems: IMenuItem[];
+    currentRouteName: TCurrentRouterName;
 }
 
-export type { IMenuItem, IUseMenu };
+export type { IMenuItem, IUseMenu, TCurrentRouterName };

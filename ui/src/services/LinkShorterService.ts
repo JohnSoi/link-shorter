@@ -41,6 +41,9 @@ class LinkShorterService {
     async getLinkByToken(token: string): Promise<string | null> {
         return await fetch(this._serviceUrl + token)
             .then(async (response: Response) => {
+                if (response.status !== 200) {
+                    return null;
+                }
                 const text = await response.text();
                 return text.replaceAll('"', "");
             })

@@ -1,4 +1,4 @@
-export type { IMenuItem, IUseMenu } from "./useMenu.ts";
+export type { IMenuItem, IUseMenu, TCurrentRouterName } from "./useMenu.ts";
 export type {
     THomeFormValues,
     IUseHomeView,

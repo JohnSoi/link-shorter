@@ -3,7 +3,7 @@ import { useMenu } from "@/composables/useMenu.ts";
 import { MegaMenu } from "primevue";
 import type { IUseMenu } from "@/types/composables";
 
-const { menuItems }: IUseMenu = useMenu();
+const { menuItems, currentRouteName }: IUseMenu = useMenu();
 </script>
 
 <template>
@@ -36,7 +36,7 @@ const { menuItems }: IUseMenu = useMenu();
             <RouterLink :to="item.route">
                 <div
                     class="BaseMenu__item flex items-center p-2 rounded-sm"
-                    :class="{ 'bg-primary shadow-xs text-black': item.active }"
+                    :class="{ 'bg-primary shadow-xs text-black': item.name === currentRouteName }"
                 >
                     <component :is="icon" v-if="icon" />
                     <span class="ml-2">{{ label }}</span>
